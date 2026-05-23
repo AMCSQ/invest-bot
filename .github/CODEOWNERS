@@ -1,0 +1,12 @@
+# All paths default to the repo owner. Single-maintainer for now;
+# add per-path owners (per profile, per design area) as collaborators join.
+*       @amcsq
+
+# Specific high-sensitivity paths — keep here as a reminder that any
+# collaborator added later should not automatically own these without
+# explicit review, since they touch order-placement and credentials.
+/mcp/                 @amcsq
+/web/lib/webhook/     @amcsq
+/web/lib/brokers.ts   @amcsq
+/web/.env.example     @amcsq
+/design/code/adapters/ @amcsq

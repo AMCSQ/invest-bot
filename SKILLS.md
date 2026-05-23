@@ -27,16 +27,23 @@ Companion mega-collections worth knowing:
 
 ## §1. Trading Strategy Frameworks (Backtesting + Live)
 
+**Equities / ETF / index / options frameworks (primary):**
+
 | Repo | Asset focus | License | Active? | Notes |
 |---|---|---|---|---|
+| [Backtesting.py](https://github.com/kernc/backtesting.py) | Single-asset OHLC (stocks/ETFs first-class) | AGPL-3.0 | Active | Bokeh plots, `optimize()` grid/SAMBO + `MultiBacktest` walk-forward. **Default for swing/day in this repo.** |
+| [zipline-reloaded](https://github.com/stefan-jansen/zipline-reloaded) | US equities | Apache-2.0 | Active (3.1.1 Jul 2025) | Pipeline API + factor research |
+| [vectorbt](https://github.com/polakowo/vectorbt) | Anything in a DataFrame | Apache-2.0 + Commons Clause | Active | Numba-fast parameter sweeps; PRO adds purged WFO |
+| [QuantConnect Lean](https://github.com/QuantConnect/Lean) | Multi-asset, multi-broker | Apache-2.0 | Very active | Cloud-parity via `lean-cli` |
 | [Backtrader](https://github.com/mementum/backtrader) | Multi-asset event-driven | GPL-3.0 | Stale upstream; forks live | 122+ indicators; pin a maintained fork like `smalinin/backtrader_next` |
+| [NautilusTrader](https://github.com/nautechsystems/nautilus_trader) | Multi-venue, nanosecond | LGPL-3.0 | Very active | Rust core; backtest = live |
+
+**Crypto-first frameworks (secondary — for `profiles/crypto/` users only):**
+
+| Repo | Asset focus | License | Active? | Notes |
+|---|---|---|---|---|
 | [Freqtrade](https://github.com/freqtrade/freqtrade) | Crypto spot + futures | GPL-3.0 | Very active | Built-in `new-strategy`, `hyperopt` (Optuna), live + paper |
 | [Jesse](https://github.com/jesse-ai/jesse) | Crypto spot/perp + DEX | MIT | Very active | Web UI, 300+ indicators, Optuna+Ray optimizer, JesseGPT 2.0 |
-| [vectorbt](https://github.com/polakowo/vectorbt) | Anything in a DataFrame | Apache-2.0 + Commons Clause | Active | Numba-fast parameter sweeps; PRO adds purged WFO |
-| [zipline-reloaded](https://github.com/stefan-jansen/zipline-reloaded) | US equities | Apache-2.0 | Active (3.1.1 Jul 2025) | Pipeline API + factor research |
-| [Backtesting.py](https://github.com/kernc/backtesting.py) | Single-asset OHLC | AGPL-3.0 | Active | Bokeh plots, `optimize()` grid/SAMBO + `MultiBacktest` walk-forward |
-| [NautilusTrader](https://github.com/nautechsystems/nautilus_trader) | Multi-venue, nanosecond | LGPL-3.0 | Very active | Rust core; backtest = live |
-| [QuantConnect Lean](https://github.com/QuantConnect/Lean) | Multi-asset, multi-broker | Apache-2.0 | Very active | Cloud-parity via `lean-cli` |
 
 Pre-built Claude integrations:
 - [tradermonty/claude-trading-skills](https://github.com/tradermonty/claude-trading-skills) — full "Trading OS" skill pack: backtest-expert, market-data-pipeline, risk-management, screeners, charting, economic calendar, journaling, post-mortems.

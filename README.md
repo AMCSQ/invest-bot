@@ -1,12 +1,33 @@
 # Financial-Planner
 
-A personal **stocks / ETF / index / multi-asset trading research repo** curated for use with **Claude Code**. Trading-frequency neutral (day-trading and longer-term welcome), with first-class hooks for **TradingView integration** and a clean abstraction over major US brokers.
+A personal **US equities / ETF / index / options** trading research repo curated for use with **Claude Code** (and any other LLM-driven coding agent — Cursor, Codex CLI, Gemini CLI, etc.). Crypto is supported as a clearly-labeled **secondary** profile, not as a peer.
 
 The repo doubles as a Claude Code **skills pack**: drop the `.claude/skills/` folder into any project (or symlink it into `~/.claude/skills/`) to get a focused set of slash-commands for screening, backtesting, order routing, journaling, and trading discipline.
 
+## Pick your trading style
+
+Five profiles live under [`profiles/`](./profiles/). Each is a curated view of the shared skills + adapters + design pack — no duplication.
+
+| What's your hold horizon? | Profile | Skills emphasized |
+|---|---|---|
+| Years (buy & hold) | [`profiles/long-term/`](./profiles/long-term/) | `etf-analyzer`, `portfolio-optimize`, `retire-fire`, `tax-loss-harvest` |
+| Days to weeks (swing) | [`profiles/swing/`](./profiles/swing/) | `equities-screener`, `backtest-runner`, `trade-journal`, `decision-card` |
+| Minutes to hours (intraday) | [`profiles/day-trading/`](./profiles/day-trading/) | `tilt-guard` (with `PreToolUse` hook), `alert-webhook`, `broker-connect` |
+| Days to months (options) | [`profiles/options/`](./profiles/options/) | `iv-surface`, `options-strategy-builder`, `greeks-monitor` |
+| Crypto (any horizon) | [`profiles/crypto/`](./profiles/crypto/) | **Secondary** — opt-in only; see profile README for the de-emphasis rationale |
+
+Quick start: `cd profiles/<persona> && claude`. Each profile's `CLAUDE.md` narrows the LLM tool surface; `EXTRACT.md` is the recipe for spinning the profile into its own dedicated repo when it becomes your primary workflow.
+
+## For LLMs reading this repo
+
+Read [`AGENTS.md`](./AGENTS.md) first (cross-LLM advisor doc), then [`CLAUDE.md`](./CLAUDE.md) (Claude-Code specifics). The short version: ask the user what their hold horizon is, route them to the matching profile, narrow the tool surface accordingly, and never bypass discipline gates like `tilt-guard`.
+
 ## What's here
 
-- [`SKILLS.md`](./SKILLS.md) — exhaustive categorized catalog of open-source repos and Claude Code skills relevant to trading, quant finance, dashboards, GitHub workflow, and trading psychology. Compiled from a 10-agent research sweep of the 2026 ecosystem.
+- [`profiles/`](./profiles/) — 5 trading-style profiles, each a focused view of the underlying stack. **Start here.**
+- [`AGENTS.md`](./AGENTS.md) — cross-LLM agent advisor doc.
+- [`CLAUDE.md`](./CLAUDE.md) — Claude-Code-specific addendum.
+- [`SKILLS.md`](./SKILLS.md) — exhaustive categorized catalog of open-source repos and Claude Code skills relevant to trading, quant finance, dashboards, GitHub workflow, and trading psychology. Equity-first ordering; crypto-specific frameworks called out as secondary.
 - [`FAVOURITE-REPOS.md`](./FAVOURITE-REPOS.md) — curated favourites list: the 8 user-pinned anchors (vinta/awesome-python, awesome-selfhosted, the-book-of-secret-knowledge, sindresorhus/awesome, FinceptTerminal, codegraph, oh-my-pi, anthropics/claude-plugins-official) plus our peer trading-skills packs, with PORT / LINK / CHAIN / PARK / META verdicts.
 - [`design/`](./design/) — Voltrex-grade dashboard design pack:
   - [`DASHBOARD-BRIEF.md`](./design/DASHBOARD-BRIEF.md) — visual system, tokens, charts, IA, motion, a11y/perf/i18n (the universal layer)
