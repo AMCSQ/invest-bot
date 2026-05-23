@@ -297,7 +297,6 @@ export function HeroChart({ symbol, height = 420 }: HeroChartProps) {
         className="w-full h-full"
         role="img"
         aria-label={`${symbol} price chart, daily candles`}
-        tabIndex={0}
       />
       <div
         aria-live="polite"
