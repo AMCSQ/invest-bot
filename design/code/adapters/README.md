@@ -81,6 +81,32 @@ try {
 }
 ```
 
+## RecordingAdapter (VCR for adapters)
+
+[`RecordingAdapter.ts`](./RecordingAdapter.ts) wraps any concrete `BrokerAdapter` / `DataAdapter` and persists every request/response pair to `data/adapter-fixtures/<adapterName>/<method>/<argsHash>.json` (and JSONL session files for `streamOrders` / `streamQuotes`). Three modes — `"record"` (calls inner + saves), `"replay"` (no inner call, reads fixture; missing fixture is a hard error with a "run with mode='record' first" suggestion), `"passthrough"` (pure delegate). Args are hashed with sha256-of-stable-stringified-JSON (12 hex chars). `Date` and `BigInt` round-trip safely via tagged markers (`__date__`, `__bigint__`). All writes go through atomic write-via-temp-rename so half-written fixtures never get committed.
+
+Example: wrap Alpaca, record once, then run tests offline alongside [`msw`](https://mswjs.io/) for any non-adapter HTTP:
+
+```ts
+// tests/setup.ts
+import { AlpacaBrokerAdapter, RecordingBrokerAdapter } from "@/design/code/adapters";
+
+const real = new AlpacaBrokerAdapter({
+  keyId: process.env.ALPACA_KEY_ID!, secret: process.env.ALPACA_SECRET_KEY!, mode: "paper",
+});
+
+export const broker = new RecordingBrokerAdapter(real, {
+  mode: process.env.RECORD === "1" ? "record" : "replay",
+  fixturesDir: "data/adapter-fixtures",
+});
+
+// Run once with RECORD=1 npm test to capture fixtures, then in CI:
+// fixtures live in git, no network calls happen, msw handles any
+// non-adapter HTTP (e.g. webhook callbacks) the test triggers.
+```
+
+**Caveat:** time-sensitive responses (`getAccount()` equity, `getQuote().last`, `submittedAt`) will drift between record-time and replay-time. Assert on shape, not exact numbers — or freeze the clock during recording.
+
 ## "unsupported" stubs
 
 Several methods are stubbed with `throw new Error("unsupported: ...")` where the underlying SDK doesn't expose the capability — e.g. `IBKRBrokerAdapter.getOptionsChain` (would require `reqSecDefOptParams` plumbing not yet built), `AlpacaBrokerAdapter.getOptionsChain` (SDK doesn't surface the options-snapshot endpoints yet), `YFinanceDataAdapter.getEarningsCalendar` (yfinance is per-symbol only). Mix-and-match adapters: if you need options chains on IBKR, layer in `PolygonDataAdapter` for that one call.
