@@ -1,0 +1,3 @@
+{
+  "_comment": "profiles/day-trading — the ONLY profile that requires hooks. The tilt-guard PreToolUse hook must be registered here (or in ~/.claude/settings.json) before any order-placement MCP tool call can be gated. See ../../.claude/skills/tilt-guard/SKILL.md for the canonical hook registration block — copy it into this file's `hooks` key, OR run `/tilt-guard init` once from this directory and the skill will populate it. Leaving the hook block empty here is intentional until you've decided which broker / MCP tool names to gate."
+}

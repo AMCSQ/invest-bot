@@ -1,0 +1,3 @@
+{
+  "_comment": "profiles/long-term — buy & hold. No hooks needed; this profile is read-only (no order placement). Persona memory lives in ./CLAUDE.md, which Claude Code auto-loads from cwd upward."
+}

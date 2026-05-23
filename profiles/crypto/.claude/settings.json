@@ -1,0 +1,3 @@
+{
+  "_comment": "profiles/crypto — SECONDARY profile, intentionally minimal. No hooks. The day-trading profile's tilt-guard hook is equity-session-aware and would either silently bypass crypto orders (no PDT, no session) or fail-closed against a stale state.yaml. Do not point crypto order paths at equity hooks. If crypto becomes your primary game, follow ../EXTRACT.md to spin this profile into its own dedicated repo and build crypto-native discipline gates there."
+}

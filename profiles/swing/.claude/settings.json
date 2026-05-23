@@ -1,0 +1,3 @@
+{
+  "_comment": "profiles/swing — multi-day setups on US equities/ETFs. No hooks installed by default; the discipline loop is opt-in via /pre-trade-checklist + /trade-journal. Persona memory in ./CLAUDE.md."
+}

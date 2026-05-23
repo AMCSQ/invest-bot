@@ -1,0 +1,3 @@
+{
+  "_comment": "profiles/options — options-trader persona. No hooks required (the discipline loop here is the options-strategy-builder broker-tier gate + the IV-rank gate before strategy selection, both at skill level, not hook level). MCP_RISK_CEILING_PCT may be raised to 2% here vs the default 1% because option max-loss is hard-capped at the structure's max loss when bought as a defined-risk spread, but only set this once you've confirmed your structures are defined-risk."
+}
